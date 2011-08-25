@@ -1,0 +1,16 @@
+
+
+<h1>Buscando tweets</h1>
+
+<p class=><%= @dados.size %> tweets encontrados.</p>
+
+<p><%= link_to "voltar para todos os tweets", root_path %>
+
+<% @dados.each do |t| %> 
+  <div class=tweets>
+    <p><%= t["text"] %></p>
+    <span><%= t["from_user"] %></span>
+  </div>
+<% end %>
+
+

@@ -1,6 +1,7 @@
 Tweets::Application.routes.draw do
 
   root :to => "tweets#index"
+  match "search", :to => "tweets#search"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

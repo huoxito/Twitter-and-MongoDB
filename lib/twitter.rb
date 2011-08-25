@@ -5,12 +5,8 @@ class Twitter
     @twittes = []
   end
 
-  def init
-    call "http://search.twitter.com/search.json?q=%23ruby&result_type=populara"
-    puts "#{@twittes.size} twittes encontrados\n\n"
-  end
-
-  def call(url)
+  def call
+    url = "http://search.twitter.com/search.json?q=%23ruby&result_type=populara" 
     return false unless url
     begin
       req = Net::HTTP.get_response(URI.parse(url))
@@ -27,14 +23,7 @@ class Twitter
         end
       end
     end
+    puts @twittes
   end
 
-  def sort
-    @tweet = @twittes[rand(@twittes.size)]
-    puts "Usuário #{@tweet["from_user"]} twittou #{@tweet["text"]} em #{@tweet["created_at"]}"
-  end
 end
-
-sorteio = Twitter.new
-sorteio.init
-sorteio.sort
