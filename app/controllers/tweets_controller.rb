@@ -1,4 +1,4 @@
-
+require 'net/http'
 class TweetsController < ApplicationController
 
   def index
@@ -12,7 +12,7 @@ class TweetsController < ApplicationController
   def search
     
     if params[:q].nil?
-      redirect_to(root_path)
+      redirect_to root_path
     else
       @dados = []
       call "http://search.twitter.com/search.json?q=#{params[:q]}"
