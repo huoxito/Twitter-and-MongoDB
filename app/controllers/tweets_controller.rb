@@ -2,7 +2,8 @@ require 'net/http'
 class TweetsController < ApplicationController
 
   def index
-    @tweets = Tweet.all
+    @all = Tweet.count
+    @tweets = Tweet.sort(:created_at.desc).limit(50)
 
     respond_to do |format|
       format.html
@@ -33,8 +34,7 @@ class TweetsController < ApplicationController
       if res["results"]
         res["results"].each { 
           |r| @dados << r 
-          Tweet.create({"autor" => r["from_user"], "texto" => r["text"],
-                        "tweet_id" => r["id"], "autor_id" => r["from_user_id"]})
+          Tweet.create!(r)
         }
         if res["next_page"]
           call("http://search.twitter.com/search.json#{res["next_page"]}")
