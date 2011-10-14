@@ -1,0 +1,14 @@
+Tweets
+======
+
+I'm not really sure about what I'm doing here. Mostly playing with Rails, Twitter and MongoDB. Spending one more late night up and coding.
+
+More time off means more time to study new stuff.
+
+Install?
+--------
+
+The app requires MongoDB, rails 3.0.5 and ruby 1.9.2.
+
+So just run MongoDB after installing it. Bundle install and you should be ready to go.
+
