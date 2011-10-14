@@ -3,7 +3,8 @@ class TweetsController < ApplicationController
 
   def index
     @all = Tweet.count
-    @tweets = Tweet.sort(:id.desc).limit(50)
+    @tweets = Tweet.sort(:id.desc).limit(7)
+    @searches = Search.sort(:created_at.desc)
 
     respond_to do |format|
       format.html

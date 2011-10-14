@@ -1,23 +1,32 @@
 <h1>Tweets</h1>
 
 <%= form_tag(search_and_save_path, :method => "get") do %>
-  <%= label_tag(:q, "Search on twitter.com and save tweets for") %>
+  <%= label_tag(:q, "Search and save tweets for") %>
   <%= text_field_tag(:q) %>
-  <%= submit_tag("Buscar") %>
+  <%= submit_tag("Search and Save") %>
 <% end %>
 
 <%= form_tag(search_path, :method => "get") do %>
   <%= label_tag(:q, "Search tweets locally") %>
   <%= text_field_tag(:q) %>
-  <%= submit_tag("Buscar") %>
+  <%= submit_tag("Search") %>
 <% end %>
 
-<p>Currently <%= @all %> tweets mapped.</p>
+<p>Currently <%= @all %> tweets mapped. Listing last 7 tweets.</p>
 
 <% @tweets.each do |tweet| %>
-    <div class=tweets>
-      <p><%= tweet.text %></p>
-      <span><%= tweet.from_user %> . <%= tweet.created_at %></span>
-    </div>
+  <div class=tweets>
+    <p><%= tweet.text.html_safe %></p>
+    <span><%= tweet.from_user %> . <%= tweet.created_at %></span>
+  </div>
 <% end %>
 
+<p>Previous searches</p>
+
+<div id=searches>
+<% @searches.each do |search| %>
+  <div class=search>
+    <%= search.query %>
+  </div>
+<% end %>
+</div>
