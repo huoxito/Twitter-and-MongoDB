@@ -1,15 +1,15 @@
 
 
-<h1>Buscando tweets</h1>
+<h1>Listing tweets for <%= params[:q] %></h1>
 
-<p class=><%= @dados.size %> tweets encontrados.</p>
+<p class=><%= @tweets.count %> tweets encontrados.</p>
 
 <p><%= link_to "voltar para todos os tweets", root_path %>
 
-<% @dados.each do |t| %> 
+<% @tweets.each do |t| %> 
   <div class=tweets>
-    <p><%= t["text"] %></p>
-    <span><%= t["from_user"] %></span>
+    <p><%= t.text %></p>
+    <span><%= t.from_user %> . <%= t.created_at %></span>
   </div>
 <% end %>
 

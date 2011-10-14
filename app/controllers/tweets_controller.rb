@@ -14,6 +14,20 @@ class TweetsController < ApplicationController
     if params[:q].nil?
       redirect_to root_path
     else
+      query = []
+      @words = params[:q].split(" ")
+      # should match whole words - case insentive
+      @words.each { |w| query << /\b#{w}\b/i }
+      @tweets = Tweet.where(text: {"$all" => query}).sort(:id.desc)
+    end
+  end
+       
+  # Search tweets using Search API and save them to DB
+  # Save the term searched on params[:q]
+  def search_and_save
+    if params[:q].nil?
+      redirect_to root_path
+    else
       @dados = []
       url = URI.encode("http://search.twitter.com/search.json?q=#{params[:q]}")
       call url
