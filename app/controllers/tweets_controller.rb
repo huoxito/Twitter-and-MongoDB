@@ -23,7 +23,7 @@ class TweetsController < ApplicationController
   end
        
   # Search tweets using Search API and save them to DB
-  # Save the term searched on params[:q]
+  # Save the term searched
   def search_and_save
     if params[:q].nil?
       redirect_to root_path
@@ -31,6 +31,7 @@ class TweetsController < ApplicationController
       @dados = []
       url = URI.encode("http://search.twitter.com/search.json?q=#{params[:q]}")
       call url
+      Search.create(query: params[:q])
     end
   end
 
